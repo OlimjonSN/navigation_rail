@@ -29,15 +29,25 @@ class _RailState extends State<Rail> {
       body: Row(
         children: <Widget>[
           NavigationRail(
-            groupAlignment: 0,
-            labelType: NavigationRailLabelType.selected,
-            backgroundColor: Colors.orange,
+
             selectedIndex: _selectedIndex,
             onDestinationSelected: (int index) {
               setState(() {
                 _selectedIndex = index;
               });
             },
+
+            selectedLabelTextStyle: TextStyle(color: Colors.white),
+            selectedIconTheme: IconThemeData(color: Colors.white),
+         
+            groupAlignment: -1,
+            labelType: NavigationRailLabelType.selected,
+            backgroundColor: Colors.purple,
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(radius:30,backgroundColor: Colors.grey,child:Icon(Icons.people)),
+            ),
+            trailing: Padding(padding: EdgeInsets.all(8),child: OutlinedButton(onPressed: (){},child: Text("data"),),),
             destinations: const <NavigationRailDestination>[
               NavigationRailDestination(
                 icon: Icon(Icons.favorite_border),
@@ -47,24 +57,28 @@ class _RailState extends State<Rail> {
               NavigationRailDestination(
                 icon: Icon(Icons.bookmark_border),
                 selectedIcon: Icon(Icons.book),
-                label: Text('Second',style: TextStyle(color: Colors.white),),
-                
+                label: Text('Second'),
               ),
               NavigationRailDestination(
                 icon: Icon(Icons.star_border),
-                selectedIcon: Icon(Icons.star,color: Colors.white,),
+                selectedIcon: Icon(
+                  Icons.star,
+                  color: Colors.white,
+                ),
                 label: Text('Third'),
               ),
             ],
           ),
-          const VerticalDivider(thickness: 2, width: 5,color: Colors.blue,),
+          const VerticalDivider(
+            thickness: 2,
+            width: 5,
+            color: Colors.blue,
+          ),
           // This is the main content.
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("this is navigation rail")
-              ],
+              children: <Widget>[Text("this is navigation rail")],
             ),
           ),
         ],
